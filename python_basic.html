@@ -1,0 +1,1594 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Python Basics &#8212; Data Science Hub</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python_basic';</script>
+    <link rel="icon" href="_static/logo.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Pandas" href="pandas.html" />
+    <link rel="prev" title="Exercise" href="sql_exercise.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Data Science Hub - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Data Science Hub - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Welcome to DS Hub
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">SQL</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="sql_basic.html">SQL Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql_advanced.html">SQL Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql_exercise.html">Exercise</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Python Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas.html">Pandas</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fpython_basic.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/python_basic.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Python Basics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numbers-and-arithmetic">Numbers and arithmetic</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string">String</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set">Set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list">List</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuple">Tuple</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionary">Dictionary</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function">Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-and-object">Class and object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exceptions">Exceptions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-comprehension">List comprehension</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-expression">Lambda expression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterator">Iterator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generator">Generator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-filter-and-reduce">Map, filter and reduce</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#map">Map</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter">Filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reduce">Reduce</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sorting">Sorting</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="python-basics">
+<h1>Python Basics<a class="headerlink" href="#python-basics" title="Link to this heading">#</a></h1>
+<section id="numbers-and-arithmetic">
+<h2>Numbers and arithmetic<a class="headerlink" href="#numbers-and-arithmetic" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># int </span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">6.0</span> <span class="c1"># float</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">12</span> <span class="o">+</span> <span class="mi">0</span><span class="n">j</span> <span class="c1"># complex </span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;a + b = </span><span class="si">{</span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># addition</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;b - a = </span><span class="si">{</span><span class="n">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># substraction</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;a * b = </span><span class="si">{</span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># multiplication</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;b / a = </span><span class="si">{</span><span class="n">b</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># division</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;b ** a = </span><span class="si">{</span><span class="n">b</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># exponentiation </span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;5 // 2 = </span><span class="si">{</span><span class="mi">5</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># get quotient </span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;5 % 2 = </span><span class="si">{</span><span class="mi">5</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># get remainder</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a + b = 8.0
+b - a = 4.0
+a * b = 12.0
+b / a = 3.0
+b ** a = 36.0
+5 // 2 = 2
+5 % 2 = 1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="string">
+<h2>String<a class="headerlink" href="#string" title="Link to this heading">#</a></h2>
+<p>String variables are either single- or double quoted. <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">&quot;hello&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">'hello'</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span>
+<span class="n">b</span> <span class="o">=</span> <span class="s2">&quot;world&quot;</span>
+
+<span class="c1"># string can be added </span>
+<span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="c1"># = &quot;helloworld&quot;</span>
+
+<span class="c1"># print variable </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="c1"># &gt; hello world</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hello world
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="arrays">
+<h2>Arrays<a class="headerlink" href="#arrays" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table" id="id1">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">Python array data type and property</span><a class="headerlink" href="#id1" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>property</p></th>
+<th class="head"><p>Set</p></th>
+<th class="head"><p>List</p></th>
+<th class="head"><p>Tuple</p></th>
+<th class="head"><p>Dictionary</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>indexable</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes (use key)</p></td>
+</tr>
+<tr class="row-odd"><td><p>addable/removable</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>repeatable</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes for value, No for key</p></td>
+</tr>
+<tr class="row-odd"><td><p>sortable</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="set">
+<h3>Set<a class="headerlink" href="#set" title="Link to this heading">#</a></h3>
+<p>Set is a group of unique elements. No duplicates; non-ordered; non-indexable</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create empty set </span>
+<span class="n">example_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+<span class="c1"># create a set with elements</span>
+<span class="n">odd</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span> 
+<span class="n">even</span> <span class="o">=</span> <span class="p">{</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;A set of odd numbers: </span><span class="si">{</span><span class="n">odd</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;A set of even numbers: </span><span class="si">{</span><span class="n">even</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Note that the order of elements differs from creation.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A set of odd numbers: {1, 3, 4, 7}
+A set of even numbers: {2, 4, 6}
+Note that the order of elements differs from creation.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Remove an element</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">odd</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">odd</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1, 3, 7}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">remove</span></code> to remove an element not eixst will give traceback. One can use <code class="docutils literal notranslate"><span class="pre">discard</span></code> to remove an element to skip traceback if the element does not exist</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">odd</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Add an element</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">even</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">even</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{2, 4, 6, 8}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Union between sets</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_set</span> <span class="o">=</span> <span class="n">odd</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">even</span><span class="p">)</span>
+<span class="n">num_set</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1, 2, 3, 4, 6, 7, 8}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Find intersection between sets</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">set1</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">}</span>
+<span class="n">set2</span> <span class="o">=</span> <span class="p">{</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;lemon&#39;</span><span class="p">}</span>
+<span class="n">set3</span> <span class="o">=</span> <span class="n">set1</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">set2</span><span class="p">)</span>
+<span class="n">set3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{True, &#39;orange&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Clear elements in a set</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">set3</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="n">set3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>set()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="list">
+<h3>List<a class="headerlink" href="#list" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">odd</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span> <span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">even</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;A list of odd numbers: </span><span class="si">{</span><span class="n">odd</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;A list of even numbers: </span><span class="si">{</span><span class="n">even</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A list of odd numbers: [3, 1, 7, 4]
+A list of even numbers: [4, 2, 6]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Access element in a list using index</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">odd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">even</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">odd</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The first element of odd list: </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The last elment of even list: </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The first two elements of odd list: </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The first element of odd list: 3
+The last elment of even list: 6
+The first two elements of odd list: [3, 1]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Add elements to list: use index, append, insert, extend, or +</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use index</span>
+<span class="n">odd</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+
+<span class="c1"># use append</span>
+<span class="n">even</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="c1"># use insert (element, index)</span>
+<span class="n">odd</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># use extend </span>
+<span class="n">even</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;odd: </span><span class="si">{</span><span class="n">odd</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;even: </span><span class="si">{</span><span class="n">even</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>odd: [3, 1, 7, 9, 2]
+even: [4, 2, 6, 8, 10, 12]
+</pre></div>
+</div>
+</div>
+</div>
+<p>List addition</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">odd</span> <span class="o">+</span> <span class="n">even</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3, 1, 7, 9, 2, 4, 2, 6, 8, 10, 12]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Remove elements in a list: pop, remove, clear</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># remove the last element </span>
+<span class="n">even</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">even</span><span class="p">)</span>
+
+<span class="c1"># remove element via index</span>
+<span class="n">even</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># first element</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">even</span><span class="p">)</span>
+
+<span class="c1"># remove 10 </span>
+<span class="n">even</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">even</span><span class="p">)</span>
+
+<span class="c1"># remove all elements</span>
+<span class="n">example_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">example_list</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">example_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4, 2, 6, 8, 10]
+[2, 6, 8, 10]
+[2, 6, 8]
+[]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Other list operations: count, index, copy, reverse, sort</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># count how many element 2 in even</span>
+<span class="n">cnt</span> <span class="o">=</span> <span class="n">even</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of 2 in even: </span><span class="si">{</span><span class="n">cnt</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># get the index of element 2 </span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">even</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Index of 2 in even: </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># create a copy of odd</span>
+<span class="n">odd_copy</span> <span class="o">=</span> <span class="n">odd</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">odd_copy</span><span class="p">)</span>
+
+<span class="c1"># reverse the element order in odd_copy</span>
+<span class="n">odd_copy</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">odd_copy</span><span class="p">)</span>
+
+<span class="c1"># sort element in odd_copy</span>
+<span class="n">odd_copy</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">odd_copy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of 2 in even: 1
+Index of 2 in even: 0
+[3, 1, 7, 9, 2]
+[2, 9, 7, 1, 3]
+[1, 2, 3, 7, 9]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tuple">
+<h3>Tuple<a class="headerlink" href="#tuple" title="Link to this heading">#</a></h3>
+<p>Elements can not be addred or removed from the tuple.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a tuple </span>
+<span class="n">even</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># access element using index </span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">even</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;first element: </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># get index of a value </span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">even</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># return the index of value 2; return the first index if duplicates </span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;index of 2: </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># count the numebr of a value </span>
+<span class="n">cnt</span> <span class="o">=</span> <span class="n">even</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;number of 2: </span><span class="si">{</span><span class="n">cnt</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>first element: 2
+index of 2: 0
+number of 2: 2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="dictionary">
+<h3>Dictionary<a class="headerlink" href="#dictionary" title="Link to this heading">#</a></h3>
+<p>Dictionary comprises a list of key:value pairs. Keys are unique in the dictionary.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fromkeys, get, items, keys, pop, popitem, update, values </span>
+<span class="c1"># create a dictionary</span>
+<span class="n">example</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span> 
+<span class="n">example2</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">A</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
+
+<span class="c1"># add key:value</span>
+<span class="n">example</span><span class="p">[</span><span class="s2">&quot;D&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
+
+<span class="c1"># remove key:value </span>
+<span class="n">example</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
+<span class="c1">#remove the last key-item pair</span>
+<span class="n">example</span><span class="o">.</span><span class="n">popitem</span><span class="p">()</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
+
+<span class="c1"># modify key:value</span>
+<span class="n">example</span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">example</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;A&#39;: 0, &#39;B&#39;: 1, &#39;C&#39;: 2}
+{&#39;A&#39;: 0, &#39;B&#39;: 1, &#39;C&#39;: 2, &#39;D&#39;: 4}
+{&#39;B&#39;: 1, &#39;C&#39;: 2, &#39;D&#39;: 4}
+{&#39;B&#39;: 1, &#39;C&#39;: 2}
+{&#39;B&#39;: 1, &#39;C&#39;: 3}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Access value by key</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">example</span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Value of key &#39;B&#39;: </span><span class="si">{</span><span class="n">B</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># return None if key &#39;b&#39; not found</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">example</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Value of key &#39;b&#39;: </span><span class="si">{</span><span class="n">u</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Value of key &#39;B&#39;: 1
+Value of key &#39;b&#39;: None
+</pre></div>
+</div>
+</div>
+</div>
+<p>Loop through dictionary</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Get keys&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">example</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Get key:value pairs&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">example</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get keys
+B
+C
+Get key:value pairs
+B:1
+C:3
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="function">
+<h2>Function<a class="headerlink" href="#function" title="Link to this heading">#</a></h2>
+<p>Write a function to check if a number is odd or even</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">check_number</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;Function to check a number&quot;&quot;&quot;</span>
+  <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Argument should be an integer&quot;</span><span class="p">)</span>
+  
+  <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">return</span> <span class="s2">&quot;zero&quot;</span>
+  <span class="k">elif</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">return</span> <span class="s2">&quot;even and greater than zero&quot;</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="k">return</span> <span class="s2">&quot;odd&quot;</span>
+
+<span class="n">a33</span> <span class="o">=</span> <span class="n">check_number</span><span class="p">(</span><span class="mi">33</span><span class="p">)</span>
+<span class="n">a22</span> <span class="o">=</span> <span class="n">check_number</span><span class="p">(</span><span class="mi">22</span><span class="p">)</span>
+<span class="n">a0</span> <span class="o">=</span> <span class="n">check_number</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;33 is </span><span class="si">{</span><span class="n">a33</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;22 is </span><span class="si">{</span><span class="n">a22</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;0 is </span><span class="si">{</span><span class="n">a0</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>33 is odd
+22 is even and greater than zero
+0 is zero
+</pre></div>
+</div>
+</div>
+</div>
+<p>Test for error</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">check_number</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ne">TypeError</span><span class="p">:</span> <span class="n">Argument</span> <span class="n">should</span> <span class="n">be</span> <span class="n">an</span> <span class="n">integer</span>
+</pre></div>
+</div>
+</section>
+<section id="class-and-object">
+<h2>Class and object<a class="headerlink" href="#class-and-object" title="Link to this heading">#</a></h2>
+<p>Object Oriented Programming (OOP): Create objects(or instances) and methods using Python classes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">User</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;User class docstring&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">birthday</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">full_name</span> <span class="o">=</span> <span class="n">name</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">birthday</span> <span class="o">=</span> <span class="n">birthday</span> 
+        
+        <span class="c1"># extract first and last name</span>
+        <span class="n">user_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">full_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="n">user_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_name</span> <span class="o">=</span> <span class="n">user_name</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">age</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return user age&quot;&quot;&quot;</span>
+        <span class="n">age_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">birthday</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">2023</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">age_year</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">age</span>
+
+<span class="n">user1</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="s2">&quot;Joe Smith&quot;</span><span class="p">,</span> <span class="s2">&quot;19800101&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">user1</span><span class="o">.</span><span class="n">first_name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">user1</span><span class="o">.</span><span class="n">last_name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">user1</span><span class="o">.</span><span class="n">age</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Joe
+Smith
+43
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Name convention</strong>: In the above example, <code class="docutils literal notranslate"><span class="pre">user1</span></code> is an <strong>object</strong> or <strong>instance</strong>. The <code class="docutils literal notranslate"><span class="pre">first_name</span></code> or <code class="docutils literal notranslate"><span class="pre">last_name</span></code> of object <code class="docutils literal notranslate"><span class="pre">user1</span></code> is <strong>field</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check docstring text </span>
+<span class="n">help</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on class User in module __main__:
+
+class User(builtins.object)
+ |  User(name, birthday) -&gt; None
+ |  
+ |  User class docstring
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, name, birthday) -&gt; None
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |  
+ |  age(self)
+ |      Return user age
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Class special methods</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__doc__</span></code> : call docstring</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__init__</span></code>: initialize a class with variables</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__dict__</span></code>: call class attributes and values</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__str__</span></code>: define <code class="docutils literal notranslate"><span class="pre">str()</span></code> function for the class</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Citizen</span><span class="p">:</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;This is description for class Citizen&quot;&quot;&quot;</span>
+  
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">ln</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize Citizen class with first and last name&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="n">fn</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">last_name</span> <span class="o">=</span> <span class="n">ln</span>
+  
+  <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">first_name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">last_name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+  
+
+<span class="n">c1</span> <span class="o">=</span> <span class="n">Citizen</span><span class="p">(</span><span class="s2">&quot;joe&quot;</span><span class="p">,</span> <span class="s2">&quot;smith&quot;</span><span class="p">)</span>
+<span class="n">c2</span> <span class="o">=</span> <span class="n">Citizen</span><span class="p">(</span><span class="s2">&quot;mary&quot;</span><span class="p">,</span> <span class="s2">&quot;Ann&quot;</span><span class="p">)</span>
+<span class="c1"># assign a post-defined attribute</span>
+<span class="n">c1</span><span class="o">.</span><span class="n">brithday</span> <span class="o">=</span> <span class="s2">&quot;1990-2-25&quot;</span>
+
+<span class="c1"># check doc string</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+
+<span class="c1"># call attribute and value</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+
+<span class="c1"># str method</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">c2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This is description for class Citizen
+{&#39;first_name&#39;: &#39;joe&#39;, &#39;last_name&#39;: &#39;smith&#39;, &#39;brithday&#39;: &#39;1990-2-25&#39;}
+{&#39;first_name&#39;: &#39;mary&#39;, &#39;last_name&#39;: &#39;Ann&#39;}
+Mary Ann
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exceptions">
+<h2>Exceptions<a class="headerlink" href="#exceptions" title="Link to this heading">#</a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">try</span></code>, <code class="docutils literal notranslate"><span class="pre">except</span></code>, <code class="docutils literal notranslate"><span class="pre">else</span></code> and <code class="docutils literal notranslate"><span class="pre">finally</span></code> to manage errors of program workflow. Using try and except blocks can help program continue to run while catching what errors might occur in the try block.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="c1"># run first</span>
+    <span class="k">pass</span>
+
+<span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
+    <span class="c1"># run if NameError occurs in try block</span>
+    <span class="k">pass</span>
+
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="c1"># (optional) run if error other than NameError occurs in try block </span>
+    <span class="c1"># print the error message</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># run here when try block works</span>
+    <span class="c1"># run here when *none* of except blocks are executed </span>
+    <span class="k">pass</span> 
+
+<span class="k">finally</span><span class="p">:</span>
+    <span class="c1"># run here *always*</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>One can also use <code class="docutils literal notranslate"><span class="pre">raise</span></code> to raise an error in the code.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
+  <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;x should not exceed 5&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ne">Exception</span><span class="p">:</span> <span class="n">x</span> <span class="n">should</span> <span class="ow">not</span> <span class="n">exceed</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<p>More on Exception Handling</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NMTEjQ8-AJM?si=6wuBNp1ZEME_x92U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</section>
+<section id="list-comprehension">
+<h2>List comprehension<a class="headerlink" href="#list-comprehension" title="Link to this heading">#</a></h2>
+<p>Use for loop in a list to create a new list</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># squared numbers from 0 to 10</span>
+<span class="n">lc1</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">11</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lc1</span><span class="p">)</span>
+
+<span class="c1"># squared numbers of even numbers from 0 to 10 </span>
+<span class="n">lc2</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lc2</span><span class="p">)</span>
+
+<span class="c1"># cartesian product </span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">lc3</span> <span class="o">=</span> <span class="p">[(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">A</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">B</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lc3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+[0, 4, 16, 36, 64, 100]
+[(1, 2), (1, 4), (1, 6), (3, 2), (3, 4), (3, 6), (5, 2), (5, 4), (5, 6)]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lambda-expression">
+<h2>Lambda expression<a class="headerlink" href="#lambda-expression" title="Link to this heading">#</a></h2>
+<p>Write an anonymous function in a single line of code. Multiple variables are allowed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># process a name</span>
+<span class="n">full_name</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">fn</span><span class="p">,</span> <span class="n">ln</span><span class="p">:</span> <span class="n">fn</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">ln</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">full_name</span><span class="p">(</span><span class="s2">&quot; Joe&quot;</span><span class="p">,</span> <span class="s2">&quot;SMITH &quot;</span><span class="p">))</span>
+<span class="c1"># &#39;Joe Smith&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+Joe Smith
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="iterator">
+<h2>Iterator<a class="headerlink" href="#iterator" title="Link to this heading">#</a></h2>
+<p>Python iterables inlcude list, tuple, string and byte objects.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># loop through a list  </span>
+<span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;L&quot;</span><span class="p">,</span><span class="s2">&quot;E&quot;</span><span class="p">,</span><span class="s2">&quot;X&quot;</span><span class="p">]:</span> 
+  <span class="nb">print</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+
+<span class="c1"># loop through a tuple </span>
+<span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;l&quot;</span><span class="p">,</span><span class="s2">&quot;e&quot;</span><span class="p">,</span><span class="s2">&quot;x&quot;</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+
+<span class="c1"># loop through a string </span>
+<span class="k">for</span> <span class="n">character</span> <span class="ow">in</span> <span class="s2">&quot;ALEX&quot;</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">character</span><span class="p">)</span>
+
+<span class="c1"># loop through a b</span>
+<span class="k">for</span> <span class="n">byte</span> <span class="ow">in</span> <span class="sa">b</span><span class="s1">&#39;ALEX&#39;</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">byte</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Build an iterator using <code class="docutils literal notranslate"><span class="pre">iter</span></code> and <code class="docutils literal notranslate"><span class="pre">next</span></code> functions. <strong>It can help loop over things that have unknown lengths</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="s2">&quot;lemon&quot;</span><span class="p">)</span>
+
+<span class="c1"># turn an array to iterator</span>
+<span class="n">looper</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">looper</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">looper</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">looper</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>apple
+orange
+lemon
+</pre></div>
+</div>
+</div>
+</div>
+<p>When the looper is exhausted, running <code class="docutils literal notranslate"><span class="pre">next()</span></code> will result in traceback</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">looper</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ne">StopIteration</span>    <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Create a class with built-in iteration</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Portfolio</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">holdings</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># key:ticker, value:shares</span>
+
+  <span class="k">def</span> <span class="nf">buy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ticker</span><span class="p">,</span> <span class="n">shares</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">holdings</span><span class="p">[</span><span class="n">ticker</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">holdings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ticker</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">shares</span> 
+
+  <span class="k">def</span> <span class="nf">sell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ticker</span><span class="p">,</span> <span class="n">shares</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">holdings</span><span class="p">[</span><span class="n">ticker</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">holdings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ticker</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">shares</span>
+
+  <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">holdings</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Portfolio</span><span class="p">()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s2">&quot;APPL&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s2">&quot;TSLA&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="s2">&quot;APPL&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="s2">&quot;TSLA&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ticker</span><span class="p">,</span> <span class="n">share</span> <span class="ow">in</span> <span class="n">p</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ticker</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">share</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>APPL - 5
+TSLA - 25
+</pre></div>
+</div>
+</div>
+</div>
+<p>More on using <code class="docutils literal notranslate"><span class="pre">itertool</span></code> module</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/baZpqVmR488?si=3e5NiFasxiR4mz0i" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</section>
+<section id="generator">
+<h2>Generator<a class="headerlink" href="#generator" title="Link to this heading">#</a></h2>
+<p>Generator is one type of iterators. A function uses <code class="docutils literal notranslate"><span class="pre">yield</span></code> instead of <code class="docutils literal notranslate"><span class="pre">return</span></code> is called generator. It can help save time and memory when running a loop through a large iterable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1"># Return a list of 100 random integer (0-99)</span>
+<span class="k">def</span> <span class="nf">number_list</span><span class="p">():</span>
+    <span class="n">num_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+        <span class="n">num</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+        <span class="n">num_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">num_list</span> 
+
+<span class="c1"># Generate a sequence of 100 random intger (0-99)</span>
+<span class="k">def</span> <span class="nf">number_generator</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+        <span class="n">num</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="n">num</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">number_generator</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>29
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">number_generator</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>80
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="map-filter-and-reduce">
+<h2>Map, filter and reduce<a class="headerlink" href="#map-filter-and-reduce" title="Link to this heading">#</a></h2>
+<p>Functional programming: Apply a function to iterable data (e.g., list, tupe) in one line of code, instead of writing loops.</p>
+<section id="map">
+<h3>Map<a class="headerlink" href="#map" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">map(func,</span> <span class="pre">*iterables)</span></code></p></li>
+</ul>
+<p>Apply a function to one iterable or multiple iterables when the passing function using multiple arguments. The passing function will return the result of each element in the iterable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># example of one iterable</span>
+<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;alice&quot;</span><span class="p">,</span> <span class="s2">&quot;ben&quot;</span><span class="p">,</span><span class="s2">&quot;charlie&quot;</span><span class="p">]</span>
+<span class="n">map_object</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">capitalize</span><span class="p">(),</span> <span class="n">names</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">map_object</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">map_object</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;map object at 0x000002F2A53840A0&gt;
+[&#39;Alice&#39;, &#39;Ben&#39;, &#39;Charlie&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">floats</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.235</span><span class="p">,</span> <span class="mf">2.336</span><span class="p">,</span> <span class="mf">3.4562</span><span class="p">]</span>
+<span class="n">decimals</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">map_object</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">round</span><span class="p">,</span> <span class="n">floats</span><span class="p">,</span> <span class="n">decimals</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">map_object</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.2, 2.34, 3.456]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="filter">
+<h3>Filter<a class="headerlink" href="#filter" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">filter(func,</span> <span class="pre">iterable)</span></code></p></li>
+</ul>
+<p>Apply a function that returns boolean values (True or False) to the iterable (one iterable only). Then it returns only the elements that is evaluated to True.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">35</span><span class="p">,</span> <span class="mi">48</span> <span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">87</span><span class="p">,</span> <span class="mi">95</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">greater_than_50</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span>
+    <span class="k">return</span> <span class="kc">True</span>
+
+<span class="n">filter_object</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="n">greater_than_50</span><span class="p">,</span> <span class="n">nums</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">filter_object</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">filter_object</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">filter_object</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">filter_object</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>66
+87
+95
+[]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reduce">
+<h3>Reduce<a class="headerlink" href="#reduce" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">reduce(func,</span> <span class="pre">iterable</span> <span class="pre">[,</span> <span class="pre">initial])</span></code></p></li>
+</ul>
+<p>Apply a function with 2 arguments that takes first and next element in the iterable in a cumulative way. If the third argument (i.e., initial) is supplied, then it will become the first element. In Python 3, the <code class="docutils literal notranslate"><span class="pre">reduce</span></code> needs to be imported from <code class="docutils literal notranslate"><span class="pre">functools</span></code> library</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span> 
+
+<span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">custom_sum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+<span class="c1"># without initial supplied</span>
+<span class="n">res1</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">custom_sum</span><span class="p">,</span> <span class="n">nums</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res1</span><span class="p">)</span>
+
+<span class="c1"># with initial supplied</span>
+<span class="n">res2</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">custom_sum</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+20
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="sorting">
+<h2>Sorting<a class="headerlink" href="#sorting" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mylist.sort()</span></code>: Sort elements in a list and replace the original list.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nlist</span> <span class="pre">=</span> <span class="pre">sorted(mylist)</span></code>: Sort elements in a list or other iterables and return a list.</p></li>
+<li><p>Both <code class="docutils literal notranslate"><span class="pre">list.sort()</span></code> and <code class="docutils literal notranslate"><span class="pre">sorted()</span></code> have a <code class="docutils literal notranslate"><span class="pre">key</span></code> argument to indicate the way of sorting. E.g., Specify which element in arrays of arrays is used for sorting. See example below.</p></li>
+</ul>
+<p>Sort a string list</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sort a list </span>
+<span class="n">mylist</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]</span>
+<span class="n">mylist</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mylist</span><span class="p">)</span>
+
+<span class="c1"># sort with reversed order</span>
+<span class="n">mylist</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mylist</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;A&#39;, &#39;C&#39;, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
+[&#39;c&#39;, &#39;b&#39;, &#39;a&#39;, &#39;C&#39;, &#39;A&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sort a list of tuples by the 2nd element in the tuple</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tuple_list</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span> <span class="p">,(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)]</span>
+<span class="n">tuple_list</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tuple_list</span><span class="p">)</span>
+
+<span class="c1"># sort by 2nd element (number) in the tuples</span>
+<span class="n">num</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">tup</span><span class="p">:</span> <span class="n">tup</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">tuple_list</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">num</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tuple_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;A&#39;, 30), (&#39;B&#39;, 20), (&#39;C&#39;, 10)]
+[(&#39;C&#39;, 10), (&#39;B&#39;, 20), (&#39;A&#39;, 30)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sort elements in a tuple.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mytuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">sorted_mytuple</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">mytuple</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sorted_mytuple</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 3, 5, 8]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note</strong>: <code class="docutils literal notranslate"><span class="pre">mytuple.sort()</span></code> does not work because tuple object is immutable.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="sql_exercise.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Exercise</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="pandas.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Pandas</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numbers-and-arithmetic">Numbers and arithmetic</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string">String</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set">Set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list">List</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuple">Tuple</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionary">Dictionary</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function">Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-and-object">Class and object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exceptions">Exceptions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-comprehension">List comprehension</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-expression">Lambda expression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterator">Iterator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generator">Generator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-filter-and-reduce">Map, filter and reduce</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#map">Map</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter">Filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reduce">Reduce</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sorting">Sorting</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alex Chen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
