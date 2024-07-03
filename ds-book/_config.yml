@@ -4,7 +4,7 @@
 title: Data Science Hub
 author: Alex Chen
 copyright: "2023"
-logo: logo.png
+logo: logo/logo20240703_small.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -29,6 +29,6 @@ repository:
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
-  favicon: logo.png
+  favicon: logo/logo20240703_small.png
   use_issues_button: true
   use_repository_button: true
