@@ -1,0 +1,15 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: index
+parts:
+- caption: SQL
+  chapters:
+  - file: sql_basic
+  - file: sql_advanced
+  - file: sql_exercise
+- caption: Python
+  chapters:
+  - file: python_basic
+  - file: pandas

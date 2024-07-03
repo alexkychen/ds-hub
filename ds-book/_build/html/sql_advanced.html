@@ -1,0 +1,866 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>SQL Advanced &#8212; Data Science Hub</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sql_advanced';</script>
+    <link rel="icon" href="_static/logo.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Exercise" href="sql_exercise.html" />
+    <link rel="prev" title="SQL Basics" href="sql_basic.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Data Science Hub - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Data Science Hub - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Welcome to DS Hub
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">SQL</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="sql_basic.html">SQL Basics</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">SQL Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql_exercise.html">Exercise</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python_basic.html">Python Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas.html">Pandas</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fsql_advanced.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/sql_advanced.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>SQL Advanced</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation-group-by-and-having">Aggregation, Group by and Having</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#window-functions">Window functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#over-clause">OVER clause</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assign-numbers">Assign numbers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieve-values">Retrieve values</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#join-tables">Join tables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-join">Inner join</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#left-join-right-join">Left join / Right join</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-outer-join">Full outer join</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-join">Cross join</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#union">Union</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#self-join">Self-join</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subquery">Subquery</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-table-expression-cte">Common table expression (CTE)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sql-advanced">
+<h1>SQL Advanced<a class="headerlink" href="#sql-advanced" title="Link to this heading">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following SQL syntax are based on <strong>PostgreSQL</strong></p>
+</div>
+<section id="aggregation-group-by-and-having">
+<h2>Aggregation, Group by and Having<a class="headerlink" href="#aggregation-group-by-and-having" title="Link to this heading">#</a></h2>
+<p><strong>Aggregation functions are as follow</strong>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">COUNT()</span></code>: return the number of rows in a group</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AVG()</span></code>: return the mean of a group</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MIN()</span></code>: return the minumum value in a group</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MAX()</span></code>: return the maximum value in a group</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SUM()</span></code>: return the sum of a group</p></li>
+</ul>
+<p><strong>Usage rules</strong>:</p>
+<ul class="simple">
+<li><p><strong>Grouping columns</strong>: All non-aggregated columns in SELECT clause must be in the GROUP BY clause.</p></li>
+<li><p><strong>Aliases</strong>: Because GROUP BY is evaluated before SELECT, you cannot put aliases or expression used in the SELECT clause within the GROUP BY clause.</p></li>
+<li><p><strong>Filter conditions</strong>: Use HAVING clause to filter grouped data on aggregated values. Unlike the WHERE clause, which filters individual rows, the HAVING clause operates on groups of rows.</p></li>
+<li><p><strong>NULL values and data types</strong>: Can Use COALESCE to replace NULL values with something else. Use CAST operator to convert data type for aggregations.</p></li>
+<li><p><strong>Multiple grouping level</strong>: The order of multiple columns used in GROUP BY is in hierarchical order.</p></li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>We want to calculate the average salary for each deparment, but only for departments where the average salary is greater than $5000. Additionally, we want to display the department name and the number of employees in each department. However, some departments may have missing values for the number of employees, so we want to handle those null values as well.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">deparment</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="k">COALESCE</span><span class="p">(</span><span class="k">COUNT</span><span class="p">(</span><span class="n">employee_id</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">number_of_employee</span><span class="p">,</span>
+<span class="w">    </span><span class="k">CAST</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">average_salary</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">employee</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">deparment</span>
+<span class="k">HAVING</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5000</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">deparment</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>In the above SQL script, we use COALESCE to handel missing valuse (make missing values as 0). We also use CAST to convert average of salary with two decimal places.</p>
+</section>
+<section id="window-functions">
+<h2>Window functions<a class="headerlink" href="#window-functions" title="Link to this heading">#</a></h2>
+<p>Unlike aggregate functions, which output a single calculated value for a group of data, window functions output resutls on a per-row basis.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- GROUP BY col_2 </span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">col_1</span><span class="p">),</span><span class="w"> </span><span class="n">col_2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">col_2</span><span class="p">;</span>
+
+<span class="w"> </span><span class="n">col_1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col_2</span><span class="w">          </span><span class="n">col_1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col_2</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">------+-------         ------+-------</span>
+<span class="w">   </span><span class="mi">1</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="n">A</span><span class="w">      </span><span class="o">==&gt;</span><span class="w">     </span><span class="mi">2</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="n">A</span><span class="w"> </span>
+<span class="w">   </span><span class="mi">2</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="n">A</span><span class="w">              </span><span class="mi">4</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="n">B</span><span class="w"> </span>
+<span class="w">   </span><span class="mi">3</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="n">B</span><span class="w"> </span>
+<span class="w">   </span><span class="mi">4</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="n">B</span>
+
+<span class="c1">-- OVER (PARTITION BY col_2)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">col_1</span><span class="p">,</span><span class="w"> </span><span class="n">col_2</span><span class="p">,</span><span class="w"> </span>
+<span class="k">MAX</span><span class="p">(</span><span class="n">col_1</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">col_2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">max_val</span><span class="p">,</span><span class="w"> </span>
+<span class="k">FROM</span><span class="w"> </span><span class="k">table</span><span class="p">;</span>
+
+<span class="w"> </span><span class="n">col_1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col_2</span><span class="w">          </span><span class="n">col_1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col_2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">max_val</span><span class="w"> </span>
+<span class="w"> </span><span class="c1">------+-------         ------+-------+---------</span>
+<span class="w">   </span><span class="mi">1</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="n">A</span><span class="w">      </span><span class="o">==&gt;</span><span class="w">     </span><span class="mi">1</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="n">A</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="mi">2</span>
+<span class="w">   </span><span class="mi">2</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="n">A</span><span class="w">              </span><span class="mi">2</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="n">A</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="mi">2</span>
+<span class="w">   </span><span class="mi">3</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="n">B</span><span class="w">              </span><span class="mi">3</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="n">B</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="mi">4</span>
+<span class="w">   </span><span class="mi">4</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="n">B</span><span class="w">              </span><span class="mi">4</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="n">B</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="mi">4</span>
+<span class="w">                        </span>
+</pre></div>
+</div>
+<p><strong>Basic syntax</strong>
+<code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">func()</span> <span class="pre">OVER</span> <span class="pre">(PARTITION</span> <span class="pre">BY</span> <span class="pre">...</span> <span class="pre">ORDER</span> <span class="pre">BY</span> <span class="pre">...)</span> <span class="pre">FROM</span> <span class="pre">table;</span></code>
+Window functions are used in conjunction with OVER clause. Use OVER to define a window of data.</p>
+<section id="over-clause">
+<h3>OVER clause<a class="headerlink" href="#over-clause" title="Link to this heading">#</a></h3>
+<p>Use OVER clause define the window frame of data. Sub-clause (used within OVER) include:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PARTITION</span> <span class="pre">BY</span></code>: Grouping for the same value</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>: Order data by valuse</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ROWS</span> <span class="pre">BETWEEN</span></code>: Used with ORDER BY and define a number of rows or frame size in sequence to be grouped</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ROWS</span> <span class="pre">BETWEEN</span> <span class="pre">UNBOUNDED</span> <span class="pre">PRECEDING</span> <span class="pre">AND</span> <span class="pre">CURRENT</span> <span class="pre">ROW</span></code>: Includes all rows from the start of the partition up to and including the current row.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ROWS</span> <span class="pre">BETWEEN</span> <span class="pre">CURRENT</span> <span class="pre">ROW</span> <span class="pre">AND</span> <span class="pre">UNBOUNDED</span> <span class="pre">FOLLOWING</span></code>: Includes the current row and all rows after it until the end of the partition.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ROWS</span> <span class="pre">BETWEEN</span> <span class="pre">value</span> <span class="pre">PRECEDING</span> <span class="pre">AND</span> <span class="pre">value</span> <span class="pre">FOLLOWING</span></code>: Includes a specified number of rows before and after the current row, where the values can be positive integers or expressions.</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- calculate moving average (3-day) of daily stock price</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="nb">date</span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="p">,</span>
+<span class="w">    </span><span class="k">AVG</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">moving_avg</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">stock_table</span><span class="p">;</span>
+
+<span class="w">     </span><span class="nb">date</span><span class="w">  </span><span class="o">|</span><span class="w">  </span><span class="n">price</span><span class="w">             </span><span class="nb">date</span><span class="w">  </span><span class="o">|</span><span class="w">  </span><span class="n">price</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">moving_avg</span>
+<span class="c1">-----------+---------      -----------+---------+-----------</span>
+<span class="mi">2022</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">10</span><span class="w">          </span><span class="mi">2022</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">10</span><span class="w">    </span><span class="o">|</span><span class="w">   </span><span class="k">NULL</span>
+<span class="mi">2022</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">12</span><span class="w">      </span><span class="o">=&gt;</span><span class="w">  </span><span class="mi">2022</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">12</span><span class="w">    </span><span class="o">|</span><span class="w">   </span><span class="k">NULL</span>
+<span class="mi">2022</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">13</span><span class="w">          </span><span class="mi">2022</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">13</span><span class="w">    </span><span class="o">|</span><span class="w">  </span><span class="mi">11</span><span class="p">.</span><span class="mi">67</span>
+<span class="mi">2022</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">04</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">11</span><span class="w">          </span><span class="mi">2022</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">04</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">11</span><span class="w">    </span><span class="o">|</span><span class="w">  </span><span class="mi">12</span><span class="p">.</span><span class="mi">0</span>
+<span class="mi">2022</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">05</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">15</span><span class="w">          </span><span class="mi">2022</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">05</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">15</span><span class="w">    </span><span class="o">|</span><span class="w">  </span><span class="mi">13</span><span class="p">.</span><span class="mi">0</span>
+</pre></div>
+</div>
+</section>
+<section id="assign-numbers">
+<h3>Assign numbers<a class="headerlink" href="#assign-numbers" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ROW_NUMBER()</span></code> - Assigns a unique sequential number to each row within the partition.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RANK()</span></code> - Assigns a unique rank to each row within the partition, considering ties. Rows with the same values receive the same rank, and the next rank is skipped.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DENSE_RANK()</span></code> - similar to RANK(), but the next rank is not skipped.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NTILE(n)</span></code> - Divides the partition into “n” buckets or groups and assigns a bucket number to each row. It ensures that each bucket has a similar number of rows, as evenly as possible.</p></li>
+</ul>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- assign each employee a bucket number based on their salary (high to low)</span>
+<span class="c1">-- divide them into 4 buckets</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">employee_name</span><span class="p">,</span><span class="w"> </span><span class="n">salary</span><span class="p">,</span>
+<span class="w">    </span><span class="n">NTILE</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="k">DESC</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">bucket_num</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">employee_table</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="retrieve-values">
+<h3>Retrieve values<a class="headerlink" href="#retrieve-values" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>LEAD(column, offset_rows) - Retrieve values that follow the current row at an offset; shift up the specified column by offset_rows as a new column.</p></li>
+<li><p>LAG(column, offset_rows) - Retrieve values that come before the current row at an offset; shift down the specified column by offset_rows as a new column.</p></li>
+<li><p>FIRST_VALUE(column) - Retrieve first row value of the specified column within the partition.</p></li>
+<li><p>LAST_VALUE(column) - Retrieve last row value of the specified column within the partition.</p></li>
+</ul>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- lead and lag examples</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">LEAD</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">id_lead1</span><span class="p">,</span>
+<span class="w">    </span><span class="n">LAG</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">id_lag2</span>
+<span class="k">FROM</span><span class="w"> </span><span class="k">table</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">id</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">id_lead1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">id_lag2</span>
+<span class="c1">------+----------+--------- </span>
+<span class="w"> </span><span class="mi">101</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="mi">102</span><span class="w">    </span><span class="o">|</span><span class="w">  </span><span class="k">NULL</span><span class="w">  </span>
+<span class="w"> </span><span class="mi">102</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="mi">103</span><span class="w">    </span><span class="o">|</span><span class="w">  </span><span class="k">NULL</span>
+<span class="w"> </span><span class="mi">103</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="mi">104</span><span class="w">    </span><span class="o">|</span><span class="w">  </span><span class="mi">101</span>
+<span class="w"> </span><span class="mi">104</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="mi">105</span><span class="w">    </span><span class="o">|</span><span class="w">  </span><span class="mi">102</span>
+<span class="w"> </span><span class="mi">105</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="k">NULL</span><span class="w">   </span><span class="o">|</span><span class="w">  </span><span class="mi">103</span>
+</pre></div>
+</div>
+<p><strong>Aggregate</strong></p>
+<ul class="simple">
+<li><p>AVG(column) OVER (…)</p></li>
+<li><p>SUM(column) OVER (…)</p></li>
+<li><p>MIN(column) OVER (…)</p></li>
+<li><p>MAX(column) OVER (…)</p></li>
+</ul>
+<p>See above exmples for use cases.</p>
+</section>
+</section>
+<section id="join-tables">
+<h2>Join tables<a class="headerlink" href="#join-tables" title="Link to this heading">#</a></h2>
+<p>Simple explanation and examples can be found <a class="reference external" href="https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-joins/">here</a>.</p>
+<p>Example tables for demonstrating table join below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span> <span class="n">table_1</span>     <span class="o">--</span> <span class="n">table_2</span> 
+  <span class="nb">id</span> <span class="o">|</span> <span class="n">col</span>      <span class="nb">id</span> <span class="o">|</span> <span class="n">col</span> 
+<span class="o">-----+-----</span>   <span class="o">-----+-----</span>
+  <span class="mi">1</span>  <span class="o">|</span>  <span class="n">A</span>       <span class="mi">3</span>  <span class="o">|</span>  <span class="n">E</span> 
+  <span class="mi">2</span>  <span class="o">|</span>  <span class="n">B</span>       <span class="mi">4</span>  <span class="o">|</span>  <span class="n">F</span>
+  <span class="mi">3</span>  <span class="o">|</span>  <span class="n">C</span>       <span class="mi">5</span>  <span class="o">|</span>  <span class="n">G</span> 
+  <span class="mi">4</span>  <span class="o">|</span>  <span class="n">D</span>       <span class="mi">6</span>  <span class="o">|</span>  <span class="n">H</span> 
+</pre></div>
+</div>
+<section id="inner-join">
+<h3>Inner join<a class="headerlink" href="#inner-join" title="Link to this heading">#</a></h3>
+<p>Join tables by column values occurring in both tables.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">col</span><span class="p">,</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">col</span><span class="w"> </span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">table_1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">t1</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">table_2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span>
+<span class="k">ON</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col</span><span class="w"> </span>
+<span class="c1">-----+-----+-----</span>
+<span class="w">  </span><span class="mi">3</span><span class="w">  </span><span class="o">|</span><span class="w">  </span><span class="k">C</span><span class="w">  </span><span class="o">|</span><span class="w">  </span><span class="n">E</span><span class="w"> </span>
+<span class="w">  </span><span class="mi">4</span><span class="w">  </span><span class="o">|</span><span class="w">  </span><span class="n">D</span><span class="w">  </span><span class="o">|</span><span class="w">  </span><span class="n">F</span>
+</pre></div>
+</div>
+</section>
+<section id="left-join-right-join">
+<h3>Left join / Right join<a class="headerlink" href="#left-join-right-join" title="Link to this heading">#</a></h3>
+<p>Join tables by column values in one of tables.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- left join </span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">col</span><span class="p">,</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">col</span><span class="w"> </span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">table_1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">t1</span>
+<span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">table_2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">t2</span>
+<span class="k">ON</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col</span><span class="w"> </span>
+<span class="c1">-----+-----+-----</span>
+<span class="w">  </span><span class="mi">1</span><span class="w">  </span><span class="o">|</span><span class="w">  </span><span class="n">A</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span>
+<span class="w">  </span><span class="mi">2</span><span class="w">  </span><span class="o">|</span><span class="w">  </span><span class="n">B</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span>
+<span class="w">  </span><span class="mi">3</span><span class="w">  </span><span class="o">|</span><span class="w">  </span><span class="k">C</span><span class="w">  </span><span class="o">|</span><span class="w">  </span><span class="n">E</span><span class="w"> </span>
+<span class="w">  </span><span class="mi">4</span><span class="w">  </span><span class="o">|</span><span class="w">  </span><span class="n">D</span><span class="w">  </span><span class="o">|</span><span class="w">  </span><span class="n">F</span><span class="w"> </span>
+
+<span class="c1">-- right join </span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">col</span><span class="p">,</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">col</span><span class="w"> </span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">table_1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">t1</span>
+<span class="k">RIGHT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">table_2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span>
+<span class="k">ON</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">col</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">col</span><span class="w"> </span>
+<span class="c1">-----+------+-----</span>
+<span class="w">  </span><span class="mi">3</span><span class="w">  </span><span class="o">|</span><span class="w">  </span><span class="k">C</span><span class="w">   </span><span class="o">|</span><span class="w">  </span><span class="n">E</span><span class="w"> </span>
+<span class="w">  </span><span class="mi">4</span><span class="w">  </span><span class="o">|</span><span class="w">  </span><span class="n">D</span><span class="w">   </span><span class="o">|</span><span class="w">  </span><span class="n">F</span>
+<span class="w">  </span><span class="mi">5</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="k">G</span><span class="w"> </span>
+<span class="w">  </span><span class="mi">6</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="n">H</span><span class="w">       </span>
+</pre></div>
+</div>
+</section>
+<section id="full-outer-join">
+<h3>Full outer join<a class="headerlink" href="#full-outer-join" title="Link to this heading">#</a></h3>
+<p>Full outer join or full join is a combination of left and right join. It joins tables by column values occurring in both or one of the tables.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">table_1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">t1</span>
+<span class="k">FULL</span><span class="w"> </span><span class="p">[</span><span class="k">OUTER</span><span class="p">]</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">table_2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">t2</span>
+<span class="k">ON</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">id</span><span class="p">;</span><span class="w"> </span>
+
+<span class="w">  </span><span class="n">id</span><span class="w">  </span><span class="o">|</span><span class="w">  </span><span class="n">col</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="n">id</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">col</span><span class="w"> </span>
+<span class="c1">------+------+------+-----</span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="n">A</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="n">B</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span>
+<span class="w">  </span><span class="mi">3</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="k">C</span><span class="w">  </span><span class="o">|</span><span class="w">  </span><span class="mi">3</span><span class="w">   </span><span class="o">|</span><span class="w">  </span><span class="n">E</span>
+<span class="w">  </span><span class="mi">4</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="n">D</span><span class="w">  </span><span class="o">|</span><span class="w">  </span><span class="mi">4</span><span class="w">   </span><span class="o">|</span><span class="w">  </span><span class="n">F</span><span class="w"> </span>
+<span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">5</span><span class="w">   </span><span class="o">|</span><span class="w">  </span><span class="k">G</span>
+<span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">6</span><span class="w">   </span><span class="o">|</span><span class="w">  </span><span class="n">H</span>
+</pre></div>
+</div>
+</section>
+<section id="cross-join">
+<h3>Cross join<a class="headerlink" href="#cross-join" title="Link to this heading">#</a></h3>
+<p>Create a Cartesian Product of rows in two or more tables. Do not require to use ON clause.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">table_1</span>
+<span class="k">CROSS</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">table_2</span><span class="p">;</span>
+
+<span class="c1">-- the above example will result in a 4 x 4 rows of joined table.</span>
+</pre></div>
+</div>
+</section>
+<section id="union">
+<h3>Union<a class="headerlink" href="#union" title="Link to this heading">#</a></h3>
+<p>Concatenate similar tables vertically. Combine multiple SELECT results into a single set. The column data type and the number of columns must be matched from tables to be joined.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">table_1</span>
+<span class="k">UNION</span><span class="w"> </span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">table_2</span><span class="p">;</span>
+
+<span class="c1">-- it will results in a 8 rows by 2 columns table.</span>
+</pre></div>
+</div>
+</section>
+<section id="self-join">
+<h3>Self-join<a class="headerlink" href="#self-join" title="Link to this heading">#</a></h3>
+<p>Some good examples can be found <a class="reference external" href="https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-self-join/">here</a>.</p>
+</section>
+</section>
+<section id="subquery">
+<h2>Subquery<a class="headerlink" href="#subquery" title="Link to this heading">#</a></h2>
+<p>Embed a query inside a query.</p>
+<p>Subquery in <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> clause</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">employees</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">department_id</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">department_id</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">departments</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;New York&#39;</span>
+<span class="p">);</span><span class="w">          </span>
+<span class="w">       </span>
+</pre></div>
+</div>
+<p>Subquery in <code class="docutils literal notranslate"><span class="pre">FROM</span></code> clause</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">department_id</span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">average_salary</span>
+<span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">department_id</span><span class="p">,</span><span class="w"> </span><span class="n">salary</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">hire_date</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="s1">&#39;2022-01-01&#39;</span>
+<span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">recent_employees</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">department_id</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Subquery in <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> clause</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">employee_name</span><span class="p">,</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">department_name</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">departments</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">department_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">employees</span><span class="p">.</span><span class="n">department_id</span>
+<span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">department_name</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="common-table-expression-cte">
+<h2>Common table expression (CTE)<a class="headerlink" href="#common-table-expression-cte" title="Link to this heading">#</a></h2>
+<p>A temporary named result sets within SQL statement</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- a single CTE</span>
+<span class="k">WITH</span><span class="w"> </span><span class="n">my_cte</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="nb">number</span><span class="w"> </span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">my_table</span><span class="w"> </span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span>
+<span class="p">)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">my_cte</span><span class="p">;</span>
+
+<span class="c1">-- multiple CTEs</span>
+<span class="k">WITH</span><span class="w"> </span><span class="n">cte_1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">table_1</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="ss">&quot;A&quot;</span><span class="p">,</span><span class="ss">&quot;B&quot;</span><span class="p">,</span><span class="ss">&quot;C&quot;</span><span class="p">)</span>
+<span class="p">),</span><span class="w"> </span><span class="n">cte_2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">table_2</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="ss">&quot;C&quot;</span><span class="p">,</span><span class="ss">&quot;D&quot;</span><span class="p">,</span><span class="ss">&quot;E&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cte_1</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">cte_2</span>
+<span class="k">ON</span><span class="w"> </span><span class="n">cte_1</span><span class="p">.</span><span class="k">column</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cte_2</span><span class="p">.</span><span class="k">column</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="sql_basic.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">SQL Basics</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="sql_exercise.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Exercise</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation-group-by-and-having">Aggregation, Group by and Having</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#window-functions">Window functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#over-clause">OVER clause</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assign-numbers">Assign numbers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieve-values">Retrieve values</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#join-tables">Join tables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-join">Inner join</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#left-join-right-join">Left join / Right join</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-outer-join">Full outer join</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-join">Cross join</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#union">Union</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#self-join">Self-join</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subquery">Subquery</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-table-expression-cte">Common table expression (CTE)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alex Chen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
