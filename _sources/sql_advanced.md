@@ -66,7 +66,7 @@ FROM table;
 Window functions are used in conjunction with OVER clause. Use OVER to define a window of data.
 
 ### OVER clause
-Use OVER clause define the window frame of data. Sub-clause (used within OVER) include:
+Use OVER clause to define the window frame of data. Sub-clause (used within OVER) include:
 
 - `PARTITION BY`: Grouping for the same value
 - `ORDER BY`: Order data by valuse
