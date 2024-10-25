@@ -13,3 +13,7 @@ parts:
   chapters:
   - file: python_basic
   - file: pandas
+- caption: DevOps
+  chapters:
+  - file: python_env
+  - file: version_control
