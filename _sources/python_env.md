@@ -1,6 +1,13 @@
 # Python virtual environment
 
-Create Python virtual environment for projects
+```{admonition} Install multiple Python versions
+Click link below to see how to install and use different version of Python
+
+https://k0nze.dev/posts/install-pyenv-venv-vscode/
+
+```
+
+## Create Python virtual environment for projects
 
 1. Create virtual env. under your project folder 
 ```{code-block} bash
@@ -9,8 +16,15 @@ python -m venv [your_venv]
 **Note**: It will create a folder named [your_venv] under your project folder. All installed Python libraries will be stored here.
 
 2. Activate your virtual env.
+
 ```{code-block} bash
+for Windows:
+
 [your_venv]\Scripts\activate
+
+for MacOS/Linux:
+
+source [your_venv]/bin/activate
 ```
 
 3. To deactivate the virtual env.

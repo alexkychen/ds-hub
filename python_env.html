@@ -390,6 +390,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-python-virtual-environment-for-projects">Create Python virtual environment for projects</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export-library-list">Export library list</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-required-libraries">Install required libraries</a></li>
 </ul>
@@ -405,7 +406,13 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="python-virtual-environment">
 <h1>Python virtual environment<a class="headerlink" href="#python-virtual-environment" title="Link to this heading">#</a></h1>
-<p>Create Python virtual environment for projects</p>
+<div class="admonition-install-multiple-python-versions admonition">
+<p class="admonition-title">Install multiple Python versions</p>
+<p>Click link below to see how to install and use different version of Python</p>
+<p><a class="reference external" href="https://k0nze.dev/posts/install-pyenv-venv-vscode/">https://k0nze.dev/posts/install-pyenv-venv-vscode/</a></p>
+</div>
+<section id="create-python-virtual-environment-for-projects">
+<h2>Create Python virtual environment for projects<a class="headerlink" href="#create-python-virtual-environment-for-projects" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Create virtual env. under your project folder</p></li>
 </ol>
@@ -416,7 +423,13 @@ document.write(`
 <ol class="arabic simple" start="2">
 <li><p>Activate your virtual env.</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>your_venv<span class="o">]</span><span class="se">\S</span>cripts<span class="se">\a</span>ctivate
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>Windows:
+
+<span class="o">[</span>your_venv<span class="o">]</span><span class="se">\S</span>cripts<span class="se">\a</span>ctivate
+
+<span class="k">for</span><span class="w"> </span>MacOS/Linux:
+
+<span class="nb">source</span><span class="w"> </span><span class="o">[</span>your_venv<span class="o">]</span>/bin/activate
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
@@ -425,6 +438,7 @@ document.write(`
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>deactivate
 </pre></div>
 </div>
+</section>
 <section id="export-library-list">
 <h2>Export library list<a class="headerlink" href="#export-library-list" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -515,6 +529,7 @@ pip<span class="w"> </span>freeze
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-python-virtual-environment-for-projects">Create Python virtual environment for projects</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export-library-list">Export library list</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-required-libraries">Install required libraries</a></li>
 </ul>
