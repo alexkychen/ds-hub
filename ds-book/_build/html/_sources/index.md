@@ -9,7 +9,7 @@ More content coming up!
 ![](pic/welcome_small.png)
 
 ```{note}
-Last update: 2024-10-25
+Last update: 2025-01-07
 ```
 ---
 
