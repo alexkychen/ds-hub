@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
@@ -61,7 +61,7 @@
     <link rel="icon" href="_static/logo20240703_small.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Python virtual environment" href="python_env.html" />
+    <link rel="next" title="uv project manager" href="uv.html" />
     <link rel="prev" title="Python Basics" href="python_basic.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -193,6 +193,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">DevOps</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="uv.html">uv project manager</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python_env.html">Python virtual environment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="version_control.html">Git version control</a></li>
 </ul>
@@ -460,27 +461,27 @@ document.write(`
 <p>Use Pandas library 2.1</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">display</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">display</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Display HTML representation of multiple objects&quot;&quot;&quot;</span>
     <span class="n">template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;&lt;div style=&quot;float: left; padding: 10px;&quot;&gt;</span>
 <span class="s2">    &lt;p style=&#39;font-family:&quot;Courier New&quot;, Courier, monospace&#39;&gt;</span><span class="si">{0}</span><span class="s2">&lt;/p&gt;</span><span class="si">{1}</span>
 <span class="s2">    &lt;/div&gt;&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span>
 
-    <span class="k">def</span> <span class="nf">_repr_html_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_repr_html_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="nb">eval</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">_repr_html_</span><span class="p">())</span>
                          <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
                            <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
 </pre></div>
@@ -2763,73 +2764,73 @@ Right join: all values on key column from right table will be persisted.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
-#T_9fb39 td.col1.row1 {
+#T_3f6e1 td.col1.row1 {
   background-color: yellow;
 }
-#T_9fb39 td.col1.row2 {
+#T_3f6e1 td.col1.row2 {
   background-color: yellow;
 }
-#T_9fb39 td.col2.row1 {
+#T_3f6e1 td.col2.row1 {
   background-color: yellow;
 }
-#T_9fb39 td.col2.row2 {
+#T_3f6e1 td.col2.row2 {
   background-color: lightgreen;
 }
-#T_9fb39 td.col3.row1 {
+#T_3f6e1 td.col3.row1 {
   background-color: yellow;
 }
 </style>
-<table id="T_9fb39">
+<table id="T_3f6e1">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_9fb39_level0_col0" class="col_heading level0 col0" >Name</th>
-      <th id="T_9fb39_level0_col1" class="col_heading level0 col1" >Age</th>
-      <th id="T_9fb39_level0_col2" class="col_heading level0 col2" >City</th>
-      <th id="T_9fb39_level0_col3" class="col_heading level0 col3" >Address</th>
-      <th id="T_9fb39_level0_col4" class="col_heading level0 col4" >Gender</th>
+      <th id="T_3f6e1_level0_col0" class="col_heading level0 col0" >Name</th>
+      <th id="T_3f6e1_level0_col1" class="col_heading level0 col1" >Age</th>
+      <th id="T_3f6e1_level0_col2" class="col_heading level0 col2" >City</th>
+      <th id="T_3f6e1_level0_col3" class="col_heading level0 col3" >Address</th>
+      <th id="T_3f6e1_level0_col4" class="col_heading level0 col4" >Gender</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_9fb39_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_9fb39_row0_col0" class="data row0 col0" >Alice</td>
-      <td id="T_9fb39_row0_col1" class="data row0 col1" >25</td>
-      <td id="T_9fb39_row0_col2" class="data row0 col2" >New York</td>
-      <td id="T_9fb39_row0_col3" class="data row0 col3" >None</td>
-      <td id="T_9fb39_row0_col4" class="data row0 col4" >F</td>
+      <th id="T_3f6e1_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_3f6e1_row0_col0" class="data row0 col0" >Alice</td>
+      <td id="T_3f6e1_row0_col1" class="data row0 col1" >25</td>
+      <td id="T_3f6e1_row0_col2" class="data row0 col2" >New York</td>
+      <td id="T_3f6e1_row0_col3" class="data row0 col3" >None</td>
+      <td id="T_3f6e1_row0_col4" class="data row0 col4" >F</td>
     </tr>
     <tr>
-      <th id="T_9fb39_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_9fb39_row1_col0" class="data row1 col0" >Bob</td>
-      <td id="T_9fb39_row1_col1" class="data row1 col1" >31</td>
-      <td id="T_9fb39_row1_col2" class="data row1 col2" >San Jose</td>
-      <td id="T_9fb39_row1_col3" class="data row1 col3" >101 Main St.</td>
-      <td id="T_9fb39_row1_col4" class="data row1 col4" >M</td>
+      <th id="T_3f6e1_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_3f6e1_row1_col0" class="data row1 col0" >Bob</td>
+      <td id="T_3f6e1_row1_col1" class="data row1 col1" >31</td>
+      <td id="T_3f6e1_row1_col2" class="data row1 col2" >San Jose</td>
+      <td id="T_3f6e1_row1_col3" class="data row1 col3" >101 Main St.</td>
+      <td id="T_3f6e1_row1_col4" class="data row1 col4" >M</td>
     </tr>
     <tr>
-      <th id="T_9fb39_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_9fb39_row2_col0" class="data row2 col0" >Charlie</td>
-      <td id="T_9fb39_row2_col1" class="data row2 col1" >36</td>
-      <td id="T_9fb39_row2_col2" class="data row2 col2" >Los Angeles</td>
-      <td id="T_9fb39_row2_col3" class="data row2 col3" >None</td>
-      <td id="T_9fb39_row2_col4" class="data row2 col4" >M</td>
+      <th id="T_3f6e1_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_3f6e1_row2_col0" class="data row2 col0" >Charlie</td>
+      <td id="T_3f6e1_row2_col1" class="data row2 col1" >36</td>
+      <td id="T_3f6e1_row2_col2" class="data row2 col2" >Los Angeles</td>
+      <td id="T_3f6e1_row2_col3" class="data row2 col3" >None</td>
+      <td id="T_3f6e1_row2_col4" class="data row2 col4" >M</td>
     </tr>
     <tr>
-      <th id="T_9fb39_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_9fb39_row3_col0" class="data row3 col0" >David</td>
-      <td id="T_9fb39_row3_col1" class="data row3 col1" >40</td>
-      <td id="T_9fb39_row3_col2" class="data row3 col2" >Chicago</td>
-      <td id="T_9fb39_row3_col3" class="data row3 col3" >None</td>
-      <td id="T_9fb39_row3_col4" class="data row3 col4" >M</td>
+      <th id="T_3f6e1_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_3f6e1_row3_col0" class="data row3 col0" >David</td>
+      <td id="T_3f6e1_row3_col1" class="data row3 col1" >40</td>
+      <td id="T_3f6e1_row3_col2" class="data row3 col2" >Chicago</td>
+      <td id="T_3f6e1_row3_col3" class="data row3 col3" >None</td>
+      <td id="T_3f6e1_row3_col4" class="data row3 col4" >M</td>
     </tr>
     <tr>
-      <th id="T_9fb39_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_9fb39_row4_col0" class="data row4 col0" >Joe</td>
-      <td id="T_9fb39_row4_col1" class="data row4 col1" >48</td>
-      <td id="T_9fb39_row4_col2" class="data row4 col2" >Orlando</td>
-      <td id="T_9fb39_row4_col3" class="data row4 col3" >None</td>
-      <td id="T_9fb39_row4_col4" class="data row4 col4" >nan</td>
+      <th id="T_3f6e1_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_3f6e1_row4_col0" class="data row4 col0" >Joe</td>
+      <td id="T_3f6e1_row4_col1" class="data row4 col1" >48</td>
+      <td id="T_3f6e1_row4_col2" class="data row4 col2" >Orlando</td>
+      <td id="T_3f6e1_row4_col3" class="data row4 col3" >None</td>
+      <td id="T_3f6e1_row4_col4" class="data row4 col4" >nan</td>
     </tr>
   </tbody>
 </table>
@@ -3085,7 +3086,7 @@ dtype: object
                    <span class="s2">&quot;B&quot;</span><span class="p">:[</span><span class="s2">&quot;abc&quot;</span><span class="p">,</span> <span class="s2">&quot;abcc&quot;</span><span class="p">]})</span>
 
 <span class="c1"># count the number of character c in each column, row, or cell </span>
-<span class="k">def</span> <span class="nf">count_c</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">count_c</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">len</span><span class="p">([</span><span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">if</span> <span class="s2">&quot;c&quot;</span> <span class="ow">in</span> <span class="n">i</span><span class="p">])</span>
 
 <span class="n">df1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">count_c</span><span class="p">)</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
@@ -5124,11 +5125,11 @@ dtype: object
       </div>
     </a>
     <a class="right-next"
-       href="python_env.html"
+       href="uv.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Python virtual environment</p>
+        <p class="prev-next-title">uv project manager</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
