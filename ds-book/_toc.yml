@@ -15,5 +15,6 @@ parts:
   - file: pandas
 - caption: DevOps
   chapters:
+  - file: uv
   - file: python_env
   - file: version_control
