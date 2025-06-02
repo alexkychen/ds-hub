@@ -1,7 +1,6 @@
 # uv project manager
 
 **uv** is an extremely fast Python package and project manager, written in Rust.
-
 https://docs.astral.sh/uv/
 
 ## Install uv
