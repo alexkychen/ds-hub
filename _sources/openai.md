@@ -82,6 +82,42 @@ for output in outputs:
 
 ## Function as tools
 
+Use decorator @ to make a function as a tool to be used in LLM API calls
+```{code-block} python
+@function_tool
+def my_special_tool(body: str):
+    """Write a description about this function"""
+    " Do something in Python "
+    return {"status": "success"}
+```
+
 ## Function and agents as tools
 
-## Handoff
+Use `.as_tool` to turn an agent to a tool, and wrap tools and functions in a list
+```{code-block} python
+tool1 = agent1.as_tool(tool_name="Tool No1", tool_description=" ")
+tool2 = agent2.as_tool(tool_name="Tool No2", tool_description=" ")
+
+tools = [tool1, tool2, my_special_tool]
+```
+
+Create an agent manager to perform the task
+```{code-block} python
+instructions = "Write the instruction for running agent manager \
+    more instructions"
+
+manager = Agent(
+    name="agent manager", 
+    instructions=instructions, 
+    tools = tools,
+    model="gpt-4o-mini")
+
+message = "what to do"
+
+with trace("agent manager"):
+    result = await Runner.run(manager, message)
+```
+
+## Handoffs
+
+Hanoffs and agent-as-tools have similar concept. It handles processes between agents.

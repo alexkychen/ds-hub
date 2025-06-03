@@ -396,7 +396,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-agents">Multi agents</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-as-tools">Function as tools</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-and-agents-as-tools">Function and agents as tools</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handoff">Handoff</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handoffs">Handoffs</a></li>
 </ul>
             </nav>
         </div>
@@ -490,12 +490,44 @@ document.write(`
 </section>
 <section id="function-as-tools">
 <h2>Function as tools<a class="headerlink" href="#function-as-tools" title="Link to this heading">#</a></h2>
+<p>Use decorator &#64; to make a function as a tool to be used in LLM API calls</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@function_tool</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">my_special_tool</span><span class="p">(</span><span class="n">body</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Write a description about this function&quot;&quot;&quot;</span>
+    <span class="s2">&quot; Do something in Python &quot;</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;success&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
 </section>
 <section id="function-and-agents-as-tools">
 <h2>Function and agents as tools<a class="headerlink" href="#function-and-agents-as-tools" title="Link to this heading">#</a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">.as_tool</span></code> to turn an agent to a tool, and wrap tools and functions in a list</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tool1</span> <span class="o">=</span> <span class="n">agent1</span><span class="o">.</span><span class="n">as_tool</span><span class="p">(</span><span class="n">tool_name</span><span class="o">=</span><span class="s2">&quot;Tool No1&quot;</span><span class="p">,</span> <span class="n">tool_description</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+<span class="n">tool2</span> <span class="o">=</span> <span class="n">agent2</span><span class="o">.</span><span class="n">as_tool</span><span class="p">(</span><span class="n">tool_name</span><span class="o">=</span><span class="s2">&quot;Tool No2&quot;</span><span class="p">,</span> <span class="n">tool_description</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+
+<span class="n">tools</span> <span class="o">=</span> <span class="p">[</span><span class="n">tool1</span><span class="p">,</span> <span class="n">tool2</span><span class="p">,</span> <span class="n">my_special_tool</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Create an agent manager to perform the task</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">instructions</span> <span class="o">=</span> <span class="s2">&quot;Write the instruction for running agent manager </span><span class="se">\</span>
+<span class="s2">    more instructions&quot;</span>
+
+<span class="n">manager</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;agent manager&quot;</span><span class="p">,</span> 
+    <span class="n">instructions</span><span class="o">=</span><span class="n">instructions</span><span class="p">,</span> 
+    <span class="n">tools</span> <span class="o">=</span> <span class="n">tools</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">)</span>
+
+<span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;what to do&quot;</span>
+
+<span class="k">with</span> <span class="n">trace</span><span class="p">(</span><span class="s2">&quot;agent manager&quot;</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">manager</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
-<section id="handoff">
-<h2>Handoff<a class="headerlink" href="#handoff" title="Link to this heading">#</a></h2>
+<section id="handoffs">
+<h2>Handoffs<a class="headerlink" href="#handoffs" title="Link to this heading">#</a></h2>
+<p>Hanoffs and agent-as-tools have similar concept. It handles processes between agents.</p>
 </section>
 </section>
 
@@ -567,7 +599,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-agents">Multi agents</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-as-tools">Function as tools</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-and-agents-as-tools">Function and agents as tools</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handoff">Handoff</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handoffs">Handoffs</a></li>
 </ul>
   </nav></div>
 
