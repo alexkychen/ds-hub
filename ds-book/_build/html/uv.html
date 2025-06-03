@@ -62,7 +62,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Python virtual environment" href="python_env.html" />
-    <link rel="prev" title="Pandas" href="pandas.html" />
+    <link rel="prev" title="OpenAI SDK" href="openai.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -190,6 +190,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="python_basic.html">Python Basics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pandas.html">Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="openai.html">OpenAI SDK</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">DevOps</span></p>
 <ul class="current nav bd-sidenav">
@@ -408,8 +409,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="uv-project-manager">
 <h1>uv project manager<a class="headerlink" href="#uv-project-manager" title="Link to this heading">#</a></h1>
-<p><strong>uv</strong> is an extremely fast Python package and project manager, written in Rust.</p>
-<p><a class="reference external" href="https://docs.astral.sh/uv/">https://docs.astral.sh/uv/</a></p>
+<p><strong>uv</strong> is an extremely fast Python package and project manager, written in Rust.
+<a class="reference external" href="https://docs.astral.sh/uv/">https://docs.astral.sh/uv/</a></p>
 <section id="install-uv">
 <h2>Install uv<a class="headerlink" href="#install-uv" title="Link to this heading">#</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>uv
@@ -465,7 +466,11 @@ uv<span class="w"> </span>add<span class="w"> </span>git+https://github.com/psf/
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>add<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 </pre></div>
 </div>
-<p>Remove a package</p>
+<p>Alternatively, you can add dependencies in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>, then run the following</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>sync
+</pre></div>
+</div>
+<p>To remove a package</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>remove<span class="w"> </span>requests
 </pre></div>
 </div>
@@ -503,12 +508,12 @@ uv<span class="w"> </span>add<span class="w"> </span>git+https://github.com/psf/
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="pandas.html"
+       href="openai.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Pandas</p>
+        <p class="prev-next-title">OpenAI SDK</p>
       </div>
     </a>
     <a class="right-next"

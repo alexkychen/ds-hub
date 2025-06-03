@@ -64,7 +64,16 @@ Add python packages from requirements.txt
 uv add -r requirements.txt
 ```
 
-Remove a package
+Alternatively, you can add dependencies in `pyproject.toml`, then run the following
+```{code-block} bash
+uv sync
+```
+
+
+To remove a package
 ```{code-block} bash
 uv remove requests
 ```
+
+
+

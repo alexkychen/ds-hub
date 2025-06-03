@@ -13,6 +13,7 @@ parts:
   chapters:
   - file: python_basic
   - file: pandas
+  - file: openai
 - caption: DevOps
   chapters:
   - file: uv
