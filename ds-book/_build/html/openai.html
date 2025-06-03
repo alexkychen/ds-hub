@@ -395,7 +395,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-agent">Single agent</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-agents">Multi agents</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-as-tools">Function as tools</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-and-agents-as-tools">Function and agents as tools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agents-as-tools">Agents as tools</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handoffs">Handoffs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structured-output-and-guardrail">Structured output and guardrail</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-input-guardrail">Create input guardrail</a></li>
@@ -428,7 +428,10 @@ document.write(`
     <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">final_output</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Using trace() allows you to track how your agent workflow via <a class="reference external" href="https://platform.openai.com/traces">https://platform.openai.com/traces</a></p>
+<ul class="simple">
+<li><p>Using trace() allows you to track how your agent workflow via <a class="reference external" href="https://platform.openai.com/traces">https://platform.openai.com/traces</a></p></li>
+<li><p>Reference for running agents, <a class="reference external" href="https://openai.github.io/openai-agents-python/running_agents/">https://openai.github.io/openai-agents-python/running_agents/</a></p></li>
+</ul>
 </section>
 <section id="multi-agents">
 <h2>Multi agents<a class="headerlink" href="#multi-agents" title="Link to this heading">#</a></h2>
@@ -507,9 +510,12 @@ document.write(`
     <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;success&quot;</span><span class="p">}</span>
 </pre></div>
 </div>
+<ul class="simple">
+<li><p>Reference for tools, <a class="reference external" href="https://openai.github.io/openai-agents-python/tools/#function-tools">https://openai.github.io/openai-agents-python/tools/#function-tools</a></p></li>
+</ul>
 </section>
-<section id="function-and-agents-as-tools">
-<h2>Function and agents as tools<a class="headerlink" href="#function-and-agents-as-tools" title="Link to this heading">#</a></h2>
+<section id="agents-as-tools">
+<h2>Agents as tools<a class="headerlink" href="#agents-as-tools" title="Link to this heading">#</a></h2>
 <p>Use <code class="docutils literal notranslate"><span class="pre">.as_tool</span></code> to turn an agent to a tool, and wrap tools and functions in a list</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tool1</span> <span class="o">=</span> <span class="n">agent1</span><span class="o">.</span><span class="n">as_tool</span><span class="p">(</span><span class="n">tool_name</span><span class="o">=</span><span class="s2">&quot;Tool No1&quot;</span><span class="p">,</span> <span class="n">tool_description</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
 <span class="n">tool2</span> <span class="o">=</span> <span class="n">agent2</span><span class="o">.</span><span class="n">as_tool</span><span class="p">(</span><span class="n">tool_name</span><span class="o">=</span><span class="s2">&quot;Tool No2&quot;</span><span class="p">,</span> <span class="n">tool_description</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
@@ -538,6 +544,7 @@ document.write(`
 <h2>Handoffs<a class="headerlink" href="#handoffs" title="Link to this heading">#</a></h2>
 <p>Hanoffs and agent-as-tools are similar. It’s an agent handles processes between tools (function tool or/and agent as tool).</p>
 <p>In this scenario, we create a set of tools and one handoffs (some agents and function tools inside the handoffs), and finally call a agent manager to run.</p>
+<p>Note: In agents as tool, we use <code class="docutils literal notranslate"><span class="pre">.as_tool</span></code> to convert an agent into a tool, but handoffs simply contains agents.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create agents that should run step by step</span>
 <span class="n">agent_step1</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;step1&quot;</span><span class="p">,</span> <span class="n">instructions</span><span class="o">=</span><span class="s2">&quot;Do first step&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">)</span>
 <span class="n">agent_step2</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;step2&quot;</span><span class="p">,</span> <span class="n">insturctions</span><span class="o">=</span><span class="s2">&quot;Do second step&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini)</span>
@@ -626,6 +633,9 @@ document.write(`
 </pre></div>
 </div>
 <p><strong>In the above case, input prompt (message) contains a person’s name. Therefore, the LLM call will raise an error.</strong></p>
+<ul class="simple">
+<li><p>Guardrail reference: <a class="reference external" href="https://openai.github.io/openai-agents-python/guardrails/">https://openai.github.io/openai-agents-python/guardrails/</a></p></li>
+</ul>
 </section>
 </section>
 </section>
@@ -697,7 +707,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-agent">Single agent</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-agents">Multi agents</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-as-tools">Function as tools</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-and-agents-as-tools">Function and agents as tools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agents-as-tools">Agents as tools</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handoffs">Handoffs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structured-output-and-guardrail">Structured output and guardrail</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-input-guardrail">Create input guardrail</a></li>
