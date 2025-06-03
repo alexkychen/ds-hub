@@ -1,4 +1,4 @@
-# OpenAI SDK
+# OpenAI Agents SDK
 
 Templates for building AI workflow, agents, or systems 
 
@@ -21,6 +21,7 @@ Using trace() allows you to track how your agent workflow via https://platform.o
 Prepare for agents other than OpenAI's
 ```{code-block} python
 from openai import AsyncOpenAI
+from agents import OpenAIChatCompletionsModel
 
 GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai/"
 DEEPSEEK_BASE_URL = "https://api.deepseek.com/v1"
@@ -65,6 +66,8 @@ agent3 = Agent(
 ```
 Run three agents in parallel
 ```{code-block} python
+import asyncio
+
 message = "Do something"
 
 with trace("Parallel call agents"):
@@ -84,6 +87,8 @@ for output in outputs:
 
 Use decorator @ to make a function as a tool to be used in LLM API calls
 ```{code-block} python
+from agents import function_tool
+
 @function_tool
 def my_special_tool(body: str):
     """Write a description about this function"""
@@ -120,4 +125,102 @@ with trace("agent manager"):
 
 ## Handoffs
 
-Hanoffs and agent-as-tools have similar concept. It handles processes between agents.
+Hanoffs and agent-as-tools are similar. It's an agent handles processes between tools (function tool or/and agent as tool).
+
+In this scenario, we create a set of tools and one handoffs (some agents and function tools inside the handoffs), and finally call a agent manager to run.
+
+```{code-block} python
+# create agents that should run step by step
+agent_step1 = Agent(name="step1", instructions="Do first step", model="gpt-4o-mini")
+agent_step2 = Agent(name="step2", insturctions="Do second step", model="gpt-4o-mini)
+
+step1_maker = agent_step1.as_tool(tool_name=" ", tool_description=" ")
+step2_maker = agent_step2.as_tool(tool_name=" ", tool_description=" ")
+```
+
+Create a handoff agent that handle step-by-step tools 
+```{code-block} python
+instructions="You are...you first use step1_maker tool to ...\
+    then use step2_maker tool to... \ 
+    finally, you use my_special_tool tool to... "
+
+process_agent = Agent(
+    name=" ",
+    instructions = instructions,
+    tools = [step1_maker, step2_maker, my_special_tool],
+    model="gpt-4o-mini"
+    handoff_description = " "
+)
+```
+
+Create a final agent manager to handle all the processes
+```{code-block} python
+manager_instructions = " " 
+
+tools = [tool1, tool2, tool3]
+handoffs = [process_agent]
+
+manager_agent = Agent(
+    name = "",
+    instructions = manager_instructions,
+    tools = tools,
+    handoffs = handoffs,
+    model = "gpt-4o-mini"
+)
+
+message = " "
+
+with trace("handoff agents"):
+    result = await Runner.run(manager_agent, message)
+```
+
+## Structured output and guardrail
+
+Guardrails along with structured output can help perform sanitization check for user input and LLM output.
+
+### Create input guardrail
+
+An agent embedded in a main agent to verify certain condition in user input
+
+```{code-block} python
+# Create a class (data model) using pydantic
+from pydantic import BaseModel
+from agents import input_guardrail
+
+class CheckInput(BaseModel):
+    is_name_in_message: bool
+    name: str
+
+input_guardrail_agent = Agent(
+    name = " ",
+    instructions = "check if user includes someone's name in the input prompt",
+    output_type = CheckInput,
+    model = "gpt-4o-mini"
+)
+
+# Define guardrail function
+@input_guardrail
+async def my_guardrail(ctx, agent, message):
+    result = await Runner.run(input_guardrail_agent, message, context=ctx.context)
+    is_name_in_message = result.final_output.is_name_in_message
+    return GuardrailFunctionOutput(output_info={"found_name": result.final_output},tripwire_triggered=is_name_in_message)
+```
+
+```{code-block} python
+manager = Agent(
+    name=" ",
+    instructions = " ",
+    tools = tools, # list of tools
+    handoffs = handoffs, # handoffs in a list
+    model = "gpt-4o-mini",
+    input_guardrails = [my_guardrail]
+)
+
+message = "user input with someone's name - Edison"
+
+with trace("Protected with input guardrail"):
+    results = await Runner.run(manager, message)
+```
+
+**In the above case, input prompt (message) contains a person's name. Therefore, the LLM call will raise an error.**
+
