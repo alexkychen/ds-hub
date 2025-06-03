@@ -14,7 +14,8 @@ with trace("Tell a joke"):
     result = await Runner.run(agent, "Tell a joke about Autonomous AI Agents")
     print(result.final_output)
 ```
-Using trace() allows you to track how your agent workflow via https://platform.openai.com/traces 
+- Using trace() allows you to track how your agent workflow via https://platform.openai.com/traces 
+- Reference for running agents, https://openai.github.io/openai-agents-python/running_agents/
 
 ## Multi agents
 
@@ -95,8 +96,9 @@ def my_special_tool(body: str):
     " Do something in Python "
     return {"status": "success"}
 ```
+- Reference for tools, https://openai.github.io/openai-agents-python/tools/#function-tools
 
-## Function and agents as tools
+## Agents as tools
 
 Use `.as_tool` to turn an agent to a tool, and wrap tools and functions in a list
 ```{code-block} python
@@ -128,6 +130,8 @@ with trace("agent manager"):
 Hanoffs and agent-as-tools are similar. It's an agent handles processes between tools (function tool or/and agent as tool).
 
 In this scenario, we create a set of tools and one handoffs (some agents and function tools inside the handoffs), and finally call a agent manager to run.
+
+Note: In agents as tool, we use `.as_tool` to convert an agent into a tool, but handoffs simply contains agents. 
 
 ```{code-block} python
 # create agents that should run step by step
@@ -224,3 +228,4 @@ with trace("Protected with input guardrail"):
 
 **In the above case, input prompt (message) contains a person's name. Therefore, the LLM call will raise an error.**
 
+- Guardrail reference: https://openai.github.io/openai-agents-python/guardrails/
