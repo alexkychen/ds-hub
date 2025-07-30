@@ -75,5 +75,7 @@ To remove a package
 uv remove requests
 ```
 
-
-
+Output current packages to requirement file
+```{code-block} bash
+uv pip freeze > requirements.txt
+```
