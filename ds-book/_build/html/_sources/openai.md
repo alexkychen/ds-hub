@@ -1,6 +1,142 @@
-# OpenAI Agents SDK
+# OpenAI API
 
 Templates for building AI workflow, agents, or systems 
+
+OpenAI available LLMs https://platform.openai.com/docs/models 
+
+## Simple text generation
+```{code-block} python
+from openai import OpenAI
+client = OpenAI()
+
+response = client.responses.create(
+    model="gpt-4.1",
+    input="Write a one-sentence bedtime story about a unicorn."
+)
+
+print(response.output_text)
+```
+
+## Analyze images
+
+### Passing an URL
+```{code-block} python
+from openai import OpenAI
+client = OpenAI()
+
+response = client.responses.create(
+    model="gpt-4.1-mini",
+    input=[{
+        "role": "user",
+        "content": [
+            {"type": "input_text", "text": "what's in this image?"},
+            {
+                "type": "input_image",
+                "image_url": "https://domain.name.com/image.jpg",
+            },
+        ],
+    }],
+)
+
+print(response.output_text)
+```
+### Passing a file id
+```{code-block} python
+from openai import OpenAI
+client = OpenAI()
+
+# Function to create a file with the Files API
+def create_file(file_path):
+  with open(file_path, "rb") as file_content:
+    result = client.files.create(
+        file=file_content,
+        purpose="vision",
+    )
+    return result.id
+
+# Getting the file ID
+file_id = create_file("path_to_your_image.jpg")
+
+response = client.responses.create(
+    model="gpt-4.1-mini",
+    input=[{
+        "role": "user",
+        "content": [
+            {"type": "input_text", "text": "what's in this image?"},
+            {
+                "type": "input_image",
+                "file_id": file_id,
+            },
+        ],
+    }],
+)
+
+print(response.output_text)
+```
+### Passing a Base64 encoded image
+```{code-block} python
+import base64
+from openai import OpenAI
+
+client = OpenAI()
+
+# Function to encode the image
+def encode_image(image_path):
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode("utf-8")
+
+# Path to your image
+image_path = "path_to_your_image.jpg"
+
+# Getting the Base64 string
+base64_image = encode_image(image_path)
+
+response = client.responses.create(
+    model="gpt-4.1",
+    input=[
+        {
+            "role": "user",
+            "content": [
+                { "type": "input_text", "text": "what's in this image?" },
+                {
+                    "type": "input_image",
+                    "image_url": f"data:image/jpeg;base64,{base64_image}",
+                },
+            ],
+        }
+    ],
+)
+
+print(response.output_text)
+```
+
+## Structured output
+```{code-block} python
+from openai import OpenAI
+from pydantic import BaseModel
+
+client = OpenAI()
+
+class CalendarEvent(BaseModel):
+    name: str
+    date: str
+    participants: list[str]
+
+response = client.responses.parse(
+    model="gpt-4o-2024-08-06",
+    input=[
+        {"role": "system", "content": "Extract the event information."},
+        {
+            "role": "user",
+            "content": "Alice and Bob are going to a science fair on Friday.",
+        },
+    ],
+    text_format=CalendarEvent,
+)
+
+event = response.output_parsed
+```
+More in-depth examples of structured output: [OpenAI page](https://platform.openai.com/docs/guides/structured-outputs?api-mode=responses)
 
 ## Single agent
 ```{code-block} python
@@ -84,45 +220,62 @@ for output in outputs:
     print(output + "\n\n")
 ```
 
-## Function as tools
+## Tools
+
+Tools, used in agents or LLM calls, could be as a function or agent. It allows agents to get information returned from a function/agent and then output the results.  
+
+### Function as tools
 
 Use decorator @ to make a function as a tool to be used in LLM API calls
 ```{code-block} python
 from agents import function_tool
 
 @function_tool
-def my_special_tool(body: str):
+def my_function_tool(body: str):
     """Write a description about this function"""
     " Do something in Python "
     return {"status": "success"}
 ```
 - Reference for tools, https://openai.github.io/openai-agents-python/tools/#function-tools
 
-## Agents as tools
+### Agents as tools
 
 Use `.as_tool` to turn an agent to a tool, and wrap tools and functions in a list
 ```{code-block} python
-tool1 = agent1.as_tool(tool_name="Tool No1", tool_description=" ")
-tool2 = agent2.as_tool(tool_name="Tool No2", tool_description=" ")
-
-tools = [tool1, tool2, my_special_tool]
+agent_tool1 = agent1.as_tool(tool_name="Tool No1", tool_description=" ")
+agent_tool2 = agent2.as_tool(tool_name="Tool No2", tool_description=" ")
 ```
 
-Create an agent manager to perform the task
+### Use tools in an agent
 ```{code-block} python
+from agents.model_settings import ModelSettings
+
 instructions = "Write the instruction for running agent manager \
     more instructions"
+
+# Put tools in a list to be called in an agent next step
+tools = [my_function_tool, agent_tool1, agent_tool2]
 
 manager = Agent(
     name="agent manager", 
     instructions=instructions, 
     tools = tools,
-    model="gpt-4o-mini")
+    model="gpt-4o-mini",
+    # forcing tools to be used
+    model_settings=ModelSettings(tool_choice="required")
+    )
 
 message = "what to do"
 
 with trace("agent manager"):
     result = await Runner.run(manager, message)
+```
+- Tool settings https://openai.github.io/openai-agents-python/agents/#forcing-tool-use
+
+### Build a web API tool
+Create a function tool that can search a website via its web API
+```{code-block} python
+
 ```
 
 ## Handoffs

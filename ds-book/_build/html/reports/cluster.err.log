@@ -1,0 +1,42 @@
+Traceback (most recent call last):
+  File "C:\Users\alexk\Documents\Github\ds-hub\.venv\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\alexk\Documents\Github\ds-hub\.venv\lib\site-packages\nbclient\client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "C:\Users\alexk\Documents\Github\ds-hub\.venv\lib\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\asyncio\base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "C:\Users\alexk\Documents\Github\ds-hub\.venv\lib\site-packages\nbclient\client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\alexk\Documents\Github\ds-hub\.venv\lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\alexk\Documents\Github\ds-hub\.venv\lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
+
+# Choose one of them
+# StandardScaler
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# MinMaxScaler
+scaler = MinMaxScaler()
+X_scaled = scaler.fit_transform(X)
+------------------
+
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mNameError[0m                                 Traceback (most recent call last)
+Cell [1;32mIn[6], line 6[0m
+[0;32m      3[0m [38;5;66;03m# Choose one of them[39;00m
+[0;32m      4[0m [38;5;66;03m# StandardScaler[39;00m
+[0;32m      5[0m scaler [38;5;241m=[39m StandardScaler()
+[1;32m----> 6[0m X_scaled [38;5;241m=[39m scaler[38;5;241m.[39mfit_transform([43mX[49m)
+[0;32m      8[0m [38;5;66;03m# MinMaxScaler[39;00m
+[0;32m      9[0m scaler [38;5;241m=[39m MinMaxScaler()
+
+[1;31mNameError[0m: name 'X' is not defined
+
