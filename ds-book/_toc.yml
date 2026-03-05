@@ -15,6 +15,9 @@ parts:
   - file: pandas
   - file: cluster
   - file: openai
+- caption: Graph DS
+  chapters:
+  - file: graph_ds
 - caption: DevOps
   chapters:
   - file: uv
